@@ -567,3 +567,8 @@
 .mydp .icon-mydpremove:before {
     content: "\e806";
 }
+
+/* CUSTOM CODE */
+.second{
+  margin-left: 10px;
+}

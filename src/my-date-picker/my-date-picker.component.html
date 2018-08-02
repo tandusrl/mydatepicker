@@ -53,7 +53,8 @@
                 <tr *ngFor="let w of dates">
                     <td class="daycell daycellweeknbr" *ngIf="opts.showWeekNumbers&&opts.firstDayOfWeek==='mo'">{{w.weekNbr}}</td>
                     <td class="daycell" *ngFor="let d of w.week" [ngClass]="{'currmonth':d.cmo===currMonthId&&!d.disabled, 'selectedday':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===currMonthId, 'disabled': d.disabled, 'tablesingleday':(!opts.allowSelectionOnlyInCurrentMonth||d.cmo===currMonthId&&opts.allowSelectionOnlyInCurrentMonth)&&!d.disabled}" (click)="!d.disabled&&onCellClicked(d);$event.stopPropagation()" (keydown)="onCellKeyDown($event, d)" tabindex="0">
-                        <div *ngIf="d.markedDate.marked" class="markdate" [ngStyle]="{'background-color': d.markedDate.color}"></div>
+                        <div *ngIf="d.markedDate.marked" class="markdate second" [ngStyle]="{'background-color': d.markedDate.color}"></div>
+                        <div *ngIf="d.markedDate.marked && d.markedDate.type == 2" class="markdate second" [ngStyle]="{'background-color': '#087E8B'}"></div>
                         <div class="datevalue" [ngClass]="{'prevmonth':d.cmo===prevMonthId,'currmonth':d.cmo===currMonthId,'nextmonth':d.cmo===nextMonthId,'highlight':d.highlight}">
                             <span [ngClass]="{'markcurrday':d.currDay&&opts.markCurrentDay, 'dimday': d.highlight && (d.cmo===prevMonthId || d.cmo===nextMonthId || d.disabled)}">{{d.dateObj.day}}</span>
                         </div>
@@ -89,5 +90,15 @@
                 </tr>
             </tbody>
         </table>
+        <div class="calendar-footer">
+          <span class="tee-times">
+            <i class="ico ico-teetime"></i>
+            <span>Tee Times</span>
+          </span>
+          <span class="tournament">
+            <i class="ico ico-tournament"></i>
+            <span>Gare</span>
+          </span>
+        </div>
     </div>
 </div>

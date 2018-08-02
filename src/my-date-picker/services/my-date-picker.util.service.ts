@@ -196,12 +196,21 @@ export class UtilService {
     }
 
     isMarkedDate(date: IMyDate, markedDates: Array<IMyMarkedDates>, markWeekends: IMyMarkedDate): IMyMarkedDate {
+      // CUSTOM CODE
+      let type = 0;
+      let color: any;
+      color = new Array<Object>();
         for (let md of markedDates) {
-            for (let d of md.dates) {
-                if (d.year === date.year && d.month === date.month && d.day === date.day) {
-                    return {marked: true, color: md.color};
+            for (var i = 0; i < md.dates.length; i++) {
+                var d = md.dates[i];
+                if (d.year == date.year && d.month == date.month && d.day == date.day) {
+                  type++;
+                  color.push(md.color);
                 }
             }
+        }
+        if(type > 0){
+          return { marked: true, color: color[type - 1], type: type };
         }
         if (markWeekends && markWeekends.marked) {
             let dayNbr = this.getDayNumber(date);
